@@ -1,0 +1,59 @@
+spring:
+  application:
+    name: keshe
+  thymeleaf:
+    cache: true
+    check-template: true
+    check-template-location: true
+    content-type: text/html
+    enabled: true
+    encoding: UTF-8
+    mode: HTML
+    prefix: classpath:/templates/
+    suffix: .html
+  datasource:
+    #url: jdbc:mysql://47.106.186.14:3306/keshe?characterEncoding=utf-8
+    url: jdbc:mysql://localhost:3306/keshe?characterEncoding=utf-8&serverTimezone=Asia/Shanghai  # JDBC是数据库连接
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+    hikari:
+      maximum-pool-size: 100
+      minimum-idle: 20
+      connection-timeout: 60000
+      idle-timeout: 600000
+      max-lifetime: 3000000
+      connection-test-query: select 1
+
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    timeout: 5000
+    lettuce:
+      pool:
+        max-active: 50
+        max-idle: 50
+        max-wait: -1
+        min-idle: 0
+
+server:
+  port: 8001
+
+mybatis:
+  type-aliases-package: com.example.keshe.pojo
+
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+
+logging:
+  file:
+    path: /spring-boot/logging
+  pattern:
+    file: "%d{yyyy-MM-dd} === [%thread] === %-5level === %logger{50} === - %msg%n"
+  level:
+    com.jt: error
+
